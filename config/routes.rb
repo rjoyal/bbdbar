@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
+  get "sign_in", to: "sessions#new"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Main site routes
   root "pages#home"
