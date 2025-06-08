@@ -1,0 +1,53 @@
+<!-- app/views/shared/_footer.html.erb -->
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Company Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Blue Bird Mobile Dessert Bar</h3>
+        <p class="text-gray-300 mb-4">
+          Premium mobile dessert catering bringing handcrafted treats and artisan coffee to your special events.
+        </p>
+        <div class="text-gray-300">
+          <p>Serving the Greater Boston Area</p>
+          <p>Email: hello@bluebirdmobiledessertbar.com</p>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><%= link_to "About Shauna", about_path, class: "text-gray-300 hover:text-white transition-colors" %></li>
+          <li><%= link_to "Our Services", services_path, class: "text-gray-300 hover:text-white transition-colors" %></li>
+          <li><%= link_to "Photo Gallery", gallery_path, class: "text-gray-300 hover:text-white transition-colors" %></li>
+          <li><%= link_to "Contact Us", contact_path, class: "text-gray-300 hover:text-white transition-colors" %></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Services</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li>Mobile Dessert Bar</li>
+          <li>Indoor Coffee Cart</li>
+          <li>Private Baking Classes</li>
+          <li>Wedding Catering</li>
+          <li>Corporate Events</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-gray-700">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-300">
+          &copy; <%= Date.current.year %> Blue Bird Mobile Dessert Bar. All rights reserved.
+        </p>
+        <div class="mt-4 md:mt-0">
+          <!-- Social media links can go here -->
+          <p class="text-gray-400 text-sm">Follow us for the latest updates!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
