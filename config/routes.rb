@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :gallery_images
     resources :testimonials
     resources :services
-    root 'dashboard#index'
+    root "dashboard#index"
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
