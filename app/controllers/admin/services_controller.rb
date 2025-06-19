@@ -1,7 +1,7 @@
 class Admin::ServicesController < ApplicationController
-  layout 'admin'
+  layout "admin"
   before_action :require_authentication
-  before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_action :set_service, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @services = Service.order(:name)
@@ -16,9 +16,9 @@ class Admin::ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
-    
+
     if @service.save
-      redirect_to admin_services_path, notice: 'Service was successfully created.'
+      redirect_to admin_services_path, notice: "Service was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class Admin::ServicesController < ApplicationController
 
   def update
     if @service.update(service_params)
-      redirect_to admin_services_path, notice: 'Service was successfully updated.'
+      redirect_to admin_services_path, notice: "Service was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class Admin::ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    redirect_to admin_services_path, notice: 'Service was successfully deleted.'
+    redirect_to admin_services_path, notice: "Service was successfully deleted."
   end
 
   private

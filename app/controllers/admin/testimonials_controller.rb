@@ -1,11 +1,11 @@
 class Admin::TestimonialsController < ApplicationController
-  layout 'admin'
+  layout "admin"
   before_action :require_authentication
-  before_action :set_testimonial, only: [:show, :edit, :update, :destroy]
+  before_action :set_testimonial, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @testimonials = Testimonial.order(created_at: :desc)
-    @testimonials = @testimonials.where(featured: true) if params[:featured] == 'true'
+    @testimonials = @testimonials.where(featured: true) if params[:featured] == "true"
   end
 
   def show
@@ -17,9 +17,9 @@ class Admin::TestimonialsController < ApplicationController
 
   def create
     @testimonial = Testimonial.new(testimonial_params)
-    
+
     if @testimonial.save
-      redirect_to admin_testimonials_path, notice: 'Testimonial was successfully created.'
+      redirect_to admin_testimonials_path, notice: "Testimonial was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class Admin::TestimonialsController < ApplicationController
 
   def update
     if @testimonial.update(testimonial_params)
-      redirect_to admin_testimonials_path, notice: 'Testimonial was successfully updated.'
+      redirect_to admin_testimonials_path, notice: "Testimonial was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Admin::TestimonialsController < ApplicationController
 
   def destroy
     @testimonial.destroy
-    redirect_to admin_testimonials_path, notice: 'Testimonial was successfully deleted.'
+    redirect_to admin_testimonials_path, notice: "Testimonial was successfully deleted."
   end
 
   private

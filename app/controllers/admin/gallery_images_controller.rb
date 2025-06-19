@@ -1,7 +1,7 @@
 class Admin::GalleryImagesController < ApplicationController
-  layout 'admin'
+  layout "admin"
   before_action :require_authentication
-  before_action :set_gallery_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_gallery_image, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @gallery_images = GalleryImage.order(created_at: :desc).page(params[:page])
@@ -17,9 +17,9 @@ class Admin::GalleryImagesController < ApplicationController
 
   def create
     @gallery_image = GalleryImage.new(gallery_image_params)
-    
+
     if @gallery_image.save
-      redirect_to admin_gallery_images_path, notice: 'Gallery image was successfully created.'
+      redirect_to admin_gallery_images_path, notice: "Gallery image was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class Admin::GalleryImagesController < ApplicationController
 
   def update
     if @gallery_image.update(gallery_image_params)
-      redirect_to admin_gallery_images_path, notice: 'Gallery image was successfully updated.'
+      redirect_to admin_gallery_images_path, notice: "Gallery image was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Admin::GalleryImagesController < ApplicationController
 
   def destroy
     @gallery_image.destroy
-    redirect_to admin_gallery_images_path, notice: 'Gallery image was successfully deleted.'
+    redirect_to admin_gallery_images_path, notice: "Gallery image was successfully deleted."
   end
 
   private
