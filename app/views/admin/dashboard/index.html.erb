@@ -148,7 +148,7 @@
           <% @recent_testimonials.each do |testimonial| %>
             <div class="border-l-4 border-blue-400 pl-4">
               <div class="flex items-center space-x-2">
-                <p class="text-sm font-medium text-gray-900"><%= testimonial.client_name %></p>
+                <p class="text-sm font-medium text-gray-900"><%= testimonial.name %></p>
                 <% if testimonial.featured? %>
                   <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
                     Featured

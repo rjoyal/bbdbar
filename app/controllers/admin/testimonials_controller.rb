@@ -48,6 +48,6 @@ class Admin::TestimonialsController < ApplicationController
   end
 
   def testimonial_params
-    params.require(:testimonial).permit(:client_name, :content, :featured, :event_type, :event_date)
+    params.require(:testimonial).permit(:name, :content, :featured)
   end
 end
