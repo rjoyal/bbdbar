@@ -2,7 +2,7 @@
 
 # Create admin user - Rails 8 authentication uses email_address, not email
 admin = User.create!(
-  email_address: "admin@bluebirdmobiledessertbar.com",
+  email_address: "admin@bbdbar.com",
   password: "changeme123",
   password_confirmation: "changeme123"
 )

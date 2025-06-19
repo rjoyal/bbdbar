@@ -1,0 +1,81 @@
+<div class="mb-6">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">Services</h1>
+      <p class="mt-1 text-gray-600">Manage service offerings and pricing</p>
+    </div>
+    <%= link_to "Add New Service", new_admin_service_path, 
+                class: "bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium" %>
+  </div>
+</div>
+
+<div class="bg-white shadow rounded-lg">
+  <% if @services.any? %>
+    <div class="divide-y divide-gray-200">
+      <% @services.each do |service| %>
+        <div class="p-6">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="text-lg font-medium text-gray-900"><%= service.name %></h3>
+              
+              <% if service.description.present? %>
+                <p class="mt-2 text-gray-600"><%= service.description %></p>
+              <% end %>
+              
+              <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <% if service.price.present? %>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Price</dt>
+                    <dd class="mt-1 text-sm text-gray-900">$<%= number_with_precision(service.price, precision: 0) %></dd>
+                  </div>
+                <% end %>
+                
+                <% if service.duration.present? %>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Duration</dt>
+                    <dd class="mt-1 text-sm text-gray-900"><%= service.duration %> hours</dd>
+                  </div>
+                <% end %>
+                
+                <% if service.min_guests.present? %>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Min Guests</dt>
+                    <dd class="mt-1 text-sm text-gray-900"><%= service.min_guests %></dd>
+                  </div>
+                <% end %>
+                
+                <% if service.max_guests.present? %>
+                  <div>
+                    <dt class="text-sm font-medium text-gray-500">Max Guests</dt>
+                    <dd class="mt-1 text-sm text-gray-900"><%= service.max_guests %></dd>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="flex space-x-2 ml-4">
+              <%= link_to "Edit", edit_admin_service_path(service), 
+                          class: "text-blue-600 hover:text-blue-900 text-sm font-medium" %>
+              <%= link_to "Delete", admin_service_path(service), 
+                          method: :delete, 
+                          data: { confirm: "Are you sure?" },
+                          class: "text-red-600 hover:text-red-900 text-sm font-medium" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center py-12">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900">No services</h3>
+      <p class="mt-1 text-sm text-gray-500">Get started by adding your first service.</p>
+      <div class="mt-6">
+        <%= link_to "Add Service", new_admin_service_path, 
+                    class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" %>
+      </div>
+    </div>
+  <% end %>
+</div>

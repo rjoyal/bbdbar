@@ -1,0 +1,77 @@
+<div class="mb-6">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">Gallery Images</h1>
+      <p class="mt-1 text-gray-600">Manage photo gallery content</p>
+    </div>
+    <%= link_to "Add New Image", new_admin_gallery_image_path, 
+                class: "bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium" %>
+  </div>
+</div>
+
+<!-- Filter by category -->
+<div class="mb-6">
+  <div class="flex space-x-2">
+    <%= link_to "All", admin_gallery_images_path, 
+                class: "px-3 py-2 text-sm rounded-md #{params[:category].blank? ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900'}" %>
+    <% %w[camper desserts events setup portraits].each do |category| %>
+      <%= link_to category.humanize, admin_gallery_images_path(category: category), 
+                  class: "px-3 py-2 text-sm rounded-md #{params[:category] == category ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900'}" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="bg-white shadow rounded-lg">
+  <% if @gallery_images.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      <% @gallery_images.each do |image| %>
+        <div class="bg-white border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-w-16 aspect-h-12">
+            <% if image.image.attached? %>
+              <%= image_tag image.image.variant(resize_to_limit: [400, 300]), 
+                            class: "w-full h-48 object-cover" %>
+            <% else %>
+              <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="p-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-2"><%= image.title %></h3>
+            <p class="text-sm text-gray-600 mb-2"><%= truncate(image.description, length: 80) if image.description %></p>
+            
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                <%= image.category&.humanize %>
+              </span>
+              
+              <div class="flex space-x-2">
+                <%= link_to "Edit", edit_admin_gallery_image_path(image), 
+                            class: "text-blue-600 hover:text-blue-900 text-sm" %>
+                <%= link_to "Delete", admin_gallery_image_path(image), 
+                            method: :delete, 
+                            data: { confirm: "Are you sure?" },
+                            class: "text-red-600 hover:text-red-900 text-sm" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center py-12">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900">No gallery images</h3>
+      <p class="mt-1 text-sm text-gray-500">Get started by adding your first image.</p>
+      <div class="mt-6">
+        <%= link_to "Add Image", new_admin_gallery_image_path, 
+                    class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" %>
+      </div>
+    </div>
+  <% end %>
+</div>

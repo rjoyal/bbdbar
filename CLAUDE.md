@@ -79,7 +79,7 @@ resources :passwords
 - Uses SQLite3 in development (Rails 8 default)
 - Solid Queue/Cache tables managed automatically
 - Active Storage tables for image attachments
-- Seeds file creates admin user: admin@bluebirdmobiledessertbar.com / changeme123
+- Seeds file creates admin user: admin@bbdbar.com / changeme123
 
 ### Business Context
 This is a mobile dessert bar business website featuring:

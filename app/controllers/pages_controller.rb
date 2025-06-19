@@ -1,5 +1,6 @@
 # app/controllers/pages_controller.rb
 class PagesController < ApplicationController
+  allow_unauthenticated_access
   def home
     @featured_images = GalleryImage.featured.limit(6)
     @featured_testimonials = Testimonial.featured.limit(3)
